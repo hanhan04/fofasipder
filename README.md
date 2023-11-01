@@ -3,12 +3,9 @@
 config配置文件，需要设置cookie
 
 eg:
-
 cookie="fofa_token=test123456789"
 
-
 fofa sipder by 我只是好色
-
 options:
   -h, --help        show this help message and exit
   -sta [STARTPAGE]  Number of pages to start crawling,the default value is 1
