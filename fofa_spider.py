@@ -39,13 +39,14 @@ def spider():
         if(len(rep_to_html.xpath("//span[@class=\"hsxa-host\"]/a/@href"))):
             urllist += rep_to_html.xpath("//span[@class=\"hsxa-host\"]/a/@href")
         else:
-            print('-'*5 + '+'*10 + '-'*5)
-            print("爬取完成，爬取页数总计为" + str(i-1))
-            print("爬取数据量为" + str(len(urllist)))
             break
 
         print("第" + str(i) + "页爬取完成")
         time.sleep(config.TimeSleep)
+
+    print('-'*5 + '+'*10 + '-'*5)
+    print("爬取完成，爬取页数总计为" + str(i))
+    print("爬取数据量为" + str(len(urllist)))
 
     return urllist
 
@@ -73,7 +74,7 @@ def init():
     parse.add_argument('-sta',type=int,help='Number of pages to start crawling,the default value is 1',nargs="?",const=1,default=1,dest="StartPage")
     parse.add_argument('-sto',type=int,help='Number of pages to stop crawl,the default value is 6',nargs="?",const=6,default=6,dest="StopPage")
     parse.add_argument('-k',type=str,help='key word is searched',required="true",dest="SearchKEY")
-    parse.add_argument('-t',type=str,help='Delay time,the default value is 5',nargs="?",const=5,default=5,dest="Timesleep")
+    parse.add_argument('-t',type=str,help='Delay time,the default value is 5',nargs="?",const=3,default=3,dest="Timesleep")
     parse.add_argument('-fn',type=str,help="Set filename",nargs="?",const=time.strftime('%Y_%m_%d_%H%M%S',time.localtime(time.time())),default=time.strftime('%Y_%m_%d_%H%M%S',time.localtime(time.time())),dest="FileName")
     
     args = parse.parse_args()
@@ -82,7 +83,8 @@ def init():
     config.SearchKEY = args.SearchKEY
     config.TimeSleep = args.Timesleep
     config.FileName = args.FileName
-     
+    
+    print(config.SearchKEY)
     print("初始化完成开始爬取")
     print('-'*5 + '+'*10 + '-'*5)
     return
